@@ -2,6 +2,17 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
 int main()
 {
     glfwInit();
@@ -26,6 +37,22 @@ int main()
     }
 
     glViewport(0, 0, 800, 600);
+
+    while (!glfwWindowShouldClose(window))
+    {
+        //输入
+        processInput(window);
+
+        //渲染指令
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        // 检查并调用事件，交换缓冲
+        glfwPollEvents();
+        glfwSwapBuffers(window);
+    }
+
+    glfwTerminate();
 
     return 0;
 }
