@@ -48,7 +48,7 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("3.3.shader.vs", "3.3.shader.fs");
+    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.2shaders.vs", "E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.2shaders.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -75,7 +75,6 @@ int main()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    
 
 
     // render loop
