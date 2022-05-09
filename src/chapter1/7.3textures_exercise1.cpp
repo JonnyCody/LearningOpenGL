@@ -51,8 +51,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.2textures_combine.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.2textures_combine.fs");
+    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.3textures_exercise1.vs", 
+        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.3textures_exercise1.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

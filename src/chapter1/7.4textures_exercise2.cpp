@@ -51,17 +51,17 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.2textures_combine.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.2textures_combine.fs");
+    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.3textures_exercise1.vs", 
+        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.4textures_exercise2.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
         // positions         // colors           // texture coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   2.0f, 2.0f, // top right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   2.0f, 0.0f, // bottom right
        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-       -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+       -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 2.0f  // top left
     };
 
     unsigned int indices[] = {
