@@ -51,8 +51,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("F:/计算机图形/代码/learn-open-gl/src/chapter1/7.1textures.vs", 
-        "F:/计算机图形/代码/learn-open-gl/src/chapter1/7.1textures.fs");
+    Shader shader("F:/计算机图形/代码/learn-open-gl/src/chapter1/7.2textures_combine.vs", 
+        "F:/计算机图形/代码/learn-open-gl/src/chapter1/7.2textures_combine.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -94,11 +94,11 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    // load and create texture
+    // load and create texture1
     // -----------------------
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    unsigned int texture1;
+    glGenTextures(2, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     // set the texture wrapping/filtering option (on currently bound texture)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -117,8 +117,32 @@ int main()
     {
         std::cout << "Failed to load texture" << std::endl;
     }
-
     stbi_image_free(data);
+
+    // generate texture2
+    unsigned int texture2;
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // set the texture wrapping/filtering option (on currently bound texture)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    unsigned char* data = stbi_load("F:/计算机图形/代码/learn-open-gl/resources/textures/awesomeface.jpg", &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
+
+    shader.use();
+    glUniform1i(glGetUniformLocation(shader.ID, "texture1"), 0);
+    shader.setInt("texture2", 1);
 
     // render loop
     // -----------
@@ -134,11 +158,14 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         // bind texture
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
         
         // render the triangle
         shader.use();
-        
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
