@@ -48,15 +48,15 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("F:/¼ÆËã»úÍ¼ÐÎ/´úÂë/learn-open-gl/src/chapter1/6.6shaders_exercise3.vs", "F:/¼ÆËã»úÍ¼ÐÎ/´úÂë/learn-open-gl/src/chapter1/6.6shaders_exercise3.fs");
+    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.3shaders.vs", "E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.3shaders.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-        // Î»ÖÃ      
-        0.5f, -0.5f, 0.0f,    // ÓÒÏÂ
-       -0.5f, -0.5f, 0.0f,    // ×óÏÂ
-        0.0f,  0.5f, 0.0f    // ¶¥²¿
+        // Î»ï¿½ï¿½              // ï¿½ï¿½É«
+        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // ï¿½ï¿½ï¿½ï¿½
+       -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // ï¿½ï¿½ï¿½ï¿½
+        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // ï¿½ï¿½ï¿½ï¿½
     };
 
     unsigned int VBO, VAO;
@@ -69,8 +69,11 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    // color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
 
 
@@ -90,9 +93,7 @@ int main()
         
         // render the triangle
         shader.use();
-        
         glBindVertexArray(VAO);
-        // because RGB cannot use negative numbers, the left corner is dark
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
