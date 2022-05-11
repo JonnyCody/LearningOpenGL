@@ -51,8 +51,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("F:/计算机图形/代码/learn-open-gl/src/chapter1/7.1textures.vs", 
-        "F:/计算机图形/代码/learn-open-gl/src/chapter1/7.1textures.fs");
+    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.1textures.vs", 
+        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.1textures.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -107,7 +107,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("F:/计算机图形/代码/learn-open-gl/resources/textures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);

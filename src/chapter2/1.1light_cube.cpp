@@ -156,7 +156,7 @@ int main()
     // we only need to bind to the VBO(to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need
     // (it's already bound, but we do it again for educational purposes)
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
+     
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
