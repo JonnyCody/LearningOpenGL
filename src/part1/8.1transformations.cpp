@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <learnopengl/filesystem.h>
 #include <learnopengl/shader.h>
 
 #include <glm/glm.hpp>
@@ -55,8 +56,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/8.1transformations.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.2textures_combine.fs");
+    Shader shader(FileSystem::getPath("src/part1/8.1transformations.vs").c_str(),
+        FileSystem::getPath("src/part1/7.2textures_combine.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -108,7 +109,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load(FileSystem::getPath("resources/textures/container.jpg").c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -130,7 +131,7 @@ int main()
     // set texture filtering parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    data = stbi_load("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/awesomeface.png", &width, &height, &nrChannels, 0);
+    data = stbi_load(FileSystem::getPath("resources/textures/awesomeface.png").c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);

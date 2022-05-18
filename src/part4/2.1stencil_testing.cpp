@@ -7,6 +7,7 @@
 
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
+#include <learnopengl/filesystem.h>
 #include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -81,10 +82,10 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/1.1depth_testing.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/1.1depth_testing.fs");
-    Shader shaderSingleColor("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/1.1depth_testing.vs",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/2.1stencil_single_color.fs");
+    Shader shader(FileSystem::getPath("src/part4/1.1depth_testing.vs").c_str(),
+        FileSystem::getPath("src/part4/1.1depth_testing.fs").c_str());
+    Shader shaderSingleColor(FileSystem::getPath("src/part4/1.1depth_testing.vs").c_str(),
+        FileSystem::getPath("src/part4/2.1stencil_single_color.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
      // ------------------------------------------------------------------
@@ -170,8 +171,8 @@ int main()
 
     // load textures
     // -------------
-    unsigned int cubeTexture = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/marble.jpg");
-    unsigned int floorTexture = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/metal.png");
+    unsigned int cubeTexture = loadTexture(FileSystem::getPath("resources/textures/marble.jpg").c_str());
+    unsigned int floorTexture = loadTexture(FileSystem::getPath("resources/textures/metal.png").c_str());
 
     // shader configuration
     // --------------------

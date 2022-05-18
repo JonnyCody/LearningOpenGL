@@ -7,6 +7,7 @@
 
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
+#include <learnopengl/filesystem.h>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -81,10 +82,10 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/6.1cubemaps.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/6.1cubemaps.fs");
-    Shader skyboxShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/6.1skybox.vs",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/6.1skybox.fs");
+    Shader shader(FileSystem::getPath("src/part4/6.1cubemaps.vs").c_str(),
+        FileSystem::getPath("src/part4/6.1cubemaps.fs").c_str());
+    Shader skyboxShader(FileSystem::getPath("src/part4/6.1skybox.vs").c_str(),
+        FileSystem::getPath("src/part4/6.1skybox.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -179,12 +180,12 @@ int main()
 
     std::vector<std::string> faces
     {
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/right.jpg",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/left.jpg",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/top.jpg",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/bottom.jpg",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/front.jpg",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/skybox/back.jpg"
+        FileSystem::getPath("resources/textures/skybox/right.jpg"),
+        FileSystem::getPath("resources/textures/skybox/left.jpg"),
+        FileSystem::getPath("resources/textures/skybox/top.jpg"),
+        FileSystem::getPath("resources/textures/skybox/bottom.jpg"),
+        FileSystem::getPath("resources/textures/skybox/front.jpg"),
+        FileSystem::getPath("resources/textures/skybox/back.jpg"),
     };
 
     // cube VAO
@@ -211,7 +212,7 @@ int main()
 
     // load textures
     // -------------
-    unsigned int cubeTexture = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container.jpg");
+    unsigned int cubeTexture = loadTexture(FileSystem::getPath("resources/textures/container.jpg").c_str());
     unsigned int cubemapTexture = loadCubemap(faces);
 
     // shader configuration

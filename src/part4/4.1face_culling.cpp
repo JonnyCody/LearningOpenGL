@@ -7,6 +7,7 @@
 
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
+#include <learnopengl/filesystem.h>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -82,8 +83,8 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader ourShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/1.1depth_testing.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part4/3.1blending_discard.fs");
+    Shader ourShader(FileSystem::getPath("src/part4/1.1depth_testing.vs").c_str(),
+        FileSystem::getPath("src/part4/3.1blending_discard.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
      // ------------------------------------------------------------------
@@ -147,8 +148,8 @@ int main()
 
     // load textures
     // -------------
-    unsigned int cubeTexture = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/marble.jpg");
-    unsigned int floorTexture = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/metal.png");
+    unsigned int cubeTexture = loadTexture(FileSystem::getPath("resources/textures/marble.jpg").c_str());
+    unsigned int floorTexture = loadTexture(FileSystem::getPath("resources/textures/metal.png").c_str());
 
     // shader configuration
     // --------------------

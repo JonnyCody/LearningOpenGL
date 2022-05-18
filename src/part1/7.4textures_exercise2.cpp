@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <learnopengl/shader.h>
+#include <learnopengl/filesystem.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -51,8 +52,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.3textures_exercise1.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/chapter1/7.4textures_exercise2.fs");
+    Shader shader(FileSystem::getPath("src/part1/7.3textures_exercise1.vs").c_str(),
+        FileSystem::getPath("src/part1/7.4textures_exercise2.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -107,7 +108,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load(FileSystem::getPath("resources/textures/container.jpg").c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -130,7 +131,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     stbi_set_flip_vertically_on_load(true);
-    data = stbi_load("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/awesomeface.png", &width, &height, &nrChannels, 0);
+    data = stbi_load(FileSystem::getPath("resources/textures/awesomeface.png").c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);

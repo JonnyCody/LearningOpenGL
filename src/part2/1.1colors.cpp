@@ -5,6 +5,7 @@
 #include <cmath>
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
+#include <learnopengl/filesystem.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -81,11 +82,11 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader lightingShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/1.1colors.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/1.1colors.fs");
+    Shader lightingShader(FileSystem::getPath("src/part2/1.1colors.vs").c_str(),
+        FileSystem::getPath("src/part2/1.1colors.fs").c_str());
 
-    Shader lightCubeShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/1.1light_cube.vs",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/1.1light_cube.fs");
+    Shader lightCubeShader(FileSystem::getPath("src/part2/1.1light_cube.vs").c_str(),
+        FileSystem::getPath("src/part2/1.1light_cube.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include <cmath>
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
+#include <learnopengl/filesystem.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -82,11 +83,11 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader lightingShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/4.2map_specular.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/5.3map_caster.fs");
+    Shader lightingShader(FileSystem::getPath("src/part2/4.2map_specular.vs").c_str(),
+        FileSystem::getPath("src/part2/5.3map_caster.fs").c_str());
 
-    Shader lightCubeShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/2.1light_cube.vs",
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part2/2.1light_cube.fs");
+    Shader lightCubeShader(FileSystem::getPath("src/part2/2.1light_cube.vs").c_str(),
+        FileSystem::getPath("src/part2/2.1light_cube.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -184,8 +185,8 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    auto diffuseMap = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container2.png");
-    auto specularMap = loadTexture("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/textures/container2_specular.png");
+    auto diffuseMap = loadTexture(FileSystem::getPath("resources/textures/container2.png").c_str());
+    auto specularMap = loadTexture(FileSystem::getPath("textures/container2_specular.png").c_str());
 
     lightingShader.use();
     lightingShader.setInt("material.diffuse", 0);

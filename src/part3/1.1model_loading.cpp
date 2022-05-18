@@ -8,6 +8,7 @@
 #include <learnopengl/shader_m.h>
 #include <learnopengl/camera.h>
 #include <learnopengl/model.h>
+#include <learnopengl/filesystem.h>
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -76,12 +77,12 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader ourShader("E:/ComputerGraphics/Code/LearnOpenGL-master/src/part3/1.1model_loading.vs", 
-        "E:/ComputerGraphics/Code/LearnOpenGL-master/src/part3/1.1model_loading.fs");
+    Shader ourShader(FileSystem::getPath("src/part3/1.1model_loading.vs").c_str(),
+        FileSystem::getPath("src/part3/1.1model_loading.fs").c_str());
 
     // load models
     // -----------
-    Model ourModel("E:/ComputerGraphics/Code/LearnOpenGL-master/resources/objects/backpack/backpack.obj");
+    Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj").c_str());
 
     
     // draw in wireframe

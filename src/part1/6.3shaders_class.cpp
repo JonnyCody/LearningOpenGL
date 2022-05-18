@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <learnopengl/shader.h>
+#include <learnopengl/filesystem.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -48,15 +49,15 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader shader("E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.3shaders.vs", "E:/ComputerGraphics/Code/LearnOpenGL/src/chapter1/6.3shaders.fs");
+    Shader shader(FileSystem::getPath("src/part1/6.3shaders.vs").c_str(),
+        FileSystem::getPath("src/part1/6.3shaders.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-        // λ��              // ��ɫ
-        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // ����
-       -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // ����
-        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // ����
+        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // 
+       -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // 
+        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // 
     };
 
     unsigned int VBO, VAO;
