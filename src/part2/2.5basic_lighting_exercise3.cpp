@@ -82,8 +82,8 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader lightingShader(FileSystem::getPath("src/part2/2.1colors.vs").c_str(),
-        FileSystem::getPath("src/part2/2.2colors.fs").c_str());
+    Shader lightingShader(FileSystem::getPath("src/part2/2.5colors.vs").c_str(),
+        FileSystem::getPath("src/part2/2.5colors.fs").c_str());
 
     Shader lightCubeShader(FileSystem::getPath("src/part2/2.1light_cube.vs").c_str(),
         FileSystem::getPath("src/part2/2.1light_cube.fs").c_str());

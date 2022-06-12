@@ -82,11 +82,11 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     // shader
-    Shader lightingShader(FileSystem::getPath("src/part2/2.1colors.vs").c_str(),
-        FileSystem::getPath("src/part2/2.2colors.fs").c_str());
+    Shader lightingShader(FileSystem::getPath("src/part2/3.1materials.vs").c_str(),
+        FileSystem::getPath("src/part2/3.1materials.fs").c_str());
 
-    Shader lightCubeShader(FileSystem::getPath("src/part2/2.1light_cube.vs").c_str(),
-        FileSystem::getPath("src/part2/2.1light_cube.fs").c_str());
+    Shader lightCubeShader(FileSystem::getPath("src/part2/3.2light_cube.vs").c_str(),
+        FileSystem::getPath("src/part2/3.2light_cube.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -186,9 +186,26 @@ int main()
 
         // be sure to activate shader when setting uniform/drawing objects
         lightingShader.use();
+
+        lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightingShader.setFloat("material.shininess", 32.0f);
+
+        glm::vec3 lightColor;
+        lightColor.x = sin(glfwGetTime() * 2.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+        
+        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
+        lightingShader.setVec3("light.ambient", ambientColor);
+        lightingShader.setVec3("light.diffuse", diffuseColor);
+        lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader.setVec3("lightColor",   1.0f, 1.0f, 1.0f);
-        lightPos.x =  1.0f + sin(glfwGetTime()) * 2.0f;
+        lightPos.x = lightPos.x = 1.0f + sin(glfwGetTime()) * 2.0f;
         lightPos.y = sin(glfwGetTime() / 2.0f) * 1.0f;
         lightingShader.setVec3("lightPos", lightPos);
 
@@ -210,6 +227,7 @@ int main()
 
         // also draw the lamp object
         lightCubeShader.use();
+        lightCubeShader.setVec3("fragColor", lightColor);
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
 
