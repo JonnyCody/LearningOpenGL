@@ -82,7 +82,7 @@ int main()
 
     // load models
     // -----------
-    Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj").c_str());
+    Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
 
     
     // draw in wireframe

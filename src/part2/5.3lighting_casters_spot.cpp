@@ -217,16 +217,6 @@ int main()
         lightingShader.setVec3("light.position", camera.Position);
 
         // light properties
-        // lightPos.x = lightPos.x = 1.0f + sin(glfwGetTime()) * 2.0f;
-        // lightPos.y = sin(glfwGetTime() / 2.0f) * 1.0f;
-        // lightingShader.setVec3("light.position", lightPos);
-        // glm::vec3 lightColor;
-        // lightColor.x = sin(glfwGetTime() * 2.0f);
-        // lightColor.y = sin(glfwGetTime() * 0.7f);
-        // lightColor.z = sin(glfwGetTime() * 1.3f);
-
-        // glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
-        // glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
         lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
@@ -238,8 +228,6 @@ int main()
         lightingShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5)));
 
         // material properties
-        // lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-        // lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         lightingShader.setFloat("material.shininess", 64.0f);
 
         // view/projection transformations
