@@ -82,7 +82,7 @@ int main()
 
     // load models
     // -----------
-    Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
+    Model ourModel(FileSystem::getPath("resources/objects/nanosuit/nanosuit.obj"));
 
     
     // draw in wireframe
