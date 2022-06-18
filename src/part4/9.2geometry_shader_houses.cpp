@@ -35,7 +35,7 @@ int main()
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -51,9 +51,9 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader(FileSystem::getPath("src/part4/9.1geometry_shader.vs").c_str(),
-        FileSystem::getPath("src/part4/9.1geometry_shader.fs").c_str(),
-        FileSystem::getPath("src/part4/9.1geometry_shader.gs").c_str());
+    Shader shader(FileSystem::getPath("src/part4/9.2geometry_shader_houses.vs").c_str(),
+        FileSystem::getPath("src/part4/9.2geometry_shader_houses.fs").c_str(),
+        FileSystem::getPath("src/part4/9.2geometry_shader_houses.gs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -91,7 +91,7 @@ int main()
         // draw points
         shader.use();
         glBindVertexArray(VAO);
-        glDrawArrays(GL_POINT, 0, 4);
+        glDrawArrays(GL_POINTS, 0, 4);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

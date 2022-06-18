@@ -48,8 +48,8 @@ int main()
     // build and compile shaders
     // -------------------------
     Shader shader(FileSystem::getPath("src/part4/9.1geometry_shader_line.vs").c_str(),
-        FileSystem::getPath("src/part4/9.1geometry_shader_line.fs").c_str());
-        // FileSystem::getPath("src/part4/9.1geometry_shader.gs").c_str());
+        FileSystem::getPath("src/part4/9.1geometry_shader_line.fs").c_str(),
+        FileSystem::getPath("src/part4/9.1geometry_shader_line.gs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -94,7 +94,7 @@ int main()
         // draw points
         shader.use();
         glBindVertexArray(VAO);
-        glDrawArrays(GL_POINT, 0, 4);
+        glDrawArrays(GL_POINTS, 0, 4);
         //glDrawArrays(GL_TRIANGLES, 0, 3);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
