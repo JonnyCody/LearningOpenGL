@@ -75,6 +75,7 @@ int main()
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE); // enabled by default on some drivers, but not all so always enable to make sure
+    //glEnable(GL_FRAMEBUFFER_SRGB);
 
     // build and compile shaders
     // -------------------------
